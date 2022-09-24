@@ -1,0 +1,41 @@
+@mixin adaptiveWidth($width) {
+    @media (max-width:$width) {
+        @content
+    }
+};
+
+@mixin adaptiveHeight($height) {
+    @media (max-height:$height) {
+        @content
+    }
+};
+
+@mixin comp() {
+    @media (max-width:1200px) {
+        @content
+    }
+};
+
+@mixin comp-min() {
+    @media (max-width:992px) {
+        @content
+    }
+};
+
+@mixin tablet() {
+    @media (max-width:768px) {
+        @content
+    }
+};
+
+@mixin mobile() {
+    @media (max-width:576px) {
+        @content
+    }
+};
+
+@mixin mobile-min() {
+    @media (max-width:450px) {
+        @content
+    }
+};

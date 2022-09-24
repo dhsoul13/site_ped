@@ -1,0 +1,227 @@
+.AuthPopUp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(8, 6, 6, 0.5);
+  z-index: 1000;
+  &__content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__form {
+    width: calc(min(90vw, 400px));
+    background: #ffffff;
+    box-shadow: 2px 2px 20px #9b52321a;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  &__buttons {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+  }
+  &__button {
+    padding: 5px;
+    background-color: #ffffff;
+    border: 1px solid $color-brown;
+    border-radius: 5px;
+    cursor: pointer;
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+    margin-right: 20px;
+  }
+  :last-child {
+    margin-right: 0;
+  }
+  &__restotation-buttons {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+  }
+  &__restotation-button {
+    padding: 20px 25px;
+    font-size: 25px;
+    margin-right: 25px;
+    background-color: #ffffff;
+    font-family: 'Futura New';
+    border: 1px solid $color-brown;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  :last-child {
+    margin-right: 0;
+  }
+  &__restotation-button.disible {
+    opacity: 0.5;
+  }
+  &__exit {
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+    div {
+      width: 40px;
+      height: 40px;
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}
+//change
+.change-city {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(8, 6, 6, 0.5);
+  z-index: 1000;
+
+  &__container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__exit {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+  }
+  &__title {
+    text-align: center;
+    font-family: 'SchoolBook';
+    font-size: 1.875rem;
+  }
+  &__list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px 0px;
+    align-items: center;
+  }
+  &__item {
+    font-family: 'Futura New';
+    font-weight: 400;
+    font-size: 1.25rem;
+  }
+  &__content {
+    width: calc(min(90vw, 400px));
+    background: #ffffff;
+    box-shadow: 2px 2px 20px #9b52321a;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    padding: 50px 0px;
+  }
+}
+
+@include comp-min {
+  .AuthPopUp {
+    &__buttons {
+      margin: 5px 0px;
+    }
+    &__restotation-buttons {
+      margin: 5px 0px;
+    }
+  }
+}
+
+@include adaptiveHeight(550px) {
+  .AuthPopUp {
+    overflow-y: scroll;
+    &__content {
+      height: auto;
+    }
+  }
+}
+
+.addPopUp {
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(8, 6, 6, 0.5);
+  z-index: 1000;
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+  &__content {
+    width: calc(min(90vw, 700px));
+    background: #ffffff;
+    box-shadow: 2px 2px 20px #9b52321a;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    padding: 50px 0px;
+    height: auto;
+  }
+  &__exit {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+  }
+  &__title {
+    text-align: center;
+    font-family: 'SchoolBook';
+    font-size: 1.875rem;
+  }
+  &__list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px 0px;
+    align-items: center;
+    padding: 0px 30px;
+  }
+  &__form {
+    width: 100%;
+  }
+  &__label {
+  }
+  &__button {
+    margin-top: 30px;
+  }
+  &__textarea {
+    padding: 16px 16px;
+    height: 100px;
+    resize: none;
+  }
+  &__input-container {
+    margin-bottom: 16px;
+  }
+}
+
+@include comp-min {
+  .addPopUp {
+    &__buttons {
+      margin: 5px 0px;
+    }
+    &__restotation-buttons {
+      margin: 5px 0px;
+    }
+  }
+}
+
+@include adaptiveHeight(550px) {
+  .addPopUp {
+    overflow-y: scroll;
+    &__content {
+      height: auto;
+    }
+  }
+}

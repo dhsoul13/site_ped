@@ -1,0 +1,21 @@
+.write {
+  &__links {
+    width: 100%;
+  }
+  &__link-service {
+    justify-content: space-between;
+    display: flex;
+    padding: 32px;
+    background: #ffffff;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin-bottom: 24px;
+    h2,
+    span {
+      color: black;
+      font-size: $text-link-size;
+      font-weight: 400;
+      font-family: 'Futura New';
+    }
+  }
+}

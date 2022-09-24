@@ -1,0 +1,71 @@
+.blog {
+  &__item {
+    display: grid;
+    grid-template-columns: minmax(190px, 225px) 1fr;
+    grid-template-rows: 225px;
+    gap: 0px 30px;
+    align-items: center;
+  }
+  &__pagination {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px 0px;
+    margin: 58px 0px;
+  }
+  &__card-title {
+    font-size: 1.875rem;
+    text-transform: initial;
+    font-family: 'Futura New';
+  }
+  &__card-data {
+    font-size: 0.9375rem;
+    color: #c3b9b5;
+    font-family: 'Futura New';
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  &__card-text {
+    font-family: 'Futura New';
+    font-size: 1.25rem;
+  }
+  &__card-item-img {
+    height: 100%;
+    border-radius: 20px;
+    position: relative;
+    img {
+      border-radius: 20px;
+      height: 100%;
+    }
+  }
+  &__card-logo {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+  }
+  &__card-img-text {
+    position: absolute;
+    bottom: 20px;
+    left: 18px;
+  }
+  &__card-teg {
+    width: 60px;
+    margin: 0;
+    height: 20px;
+    border-radius: 20px;
+    text-align: center;
+    color: azure;
+    font-family: 'Futura New';
+    background-color: #8f75ff;
+  }
+  &__img-title {
+    margin-top: 8px;
+    font-family: 'Futura New';
+    text-transform: uppercase;
+    color: azure;
+    font-size: 1.75rem;
+  }
+}

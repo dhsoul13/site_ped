@@ -1,0 +1,46 @@
+@import './normalize/index.scss';
+@import './fonts/index.scss';
+@import './var/index.scss';
+@import './media/index.scss';
+
+//common
+@import './common/index.scss';
+
+/// auth-menu
+.auth-menu {
+  padding: 20px;
+  font-family: 'Futura New';
+  background-color: $color-orange;
+  font-size: $text-link-size;
+  font-weight: 400;
+  line-height: $text-link-lineHeight;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__exit {
+    button {
+      background-color: inherit;
+      padding: 5px 20px;
+      svg {
+        width: 30px;
+      }
+    }
+  }
+}
+//pop-ups
+@import './component/popUps/index.scss';
+/// spiner
+@import './component/spiner/index.scss';
+///header
+@import './component/header/index.scss';
+////main
+//main-page
+@import './page/main/index.scss';
+/// write
+@import './page/write/index.scss';
+/// contact
+///
+///blog
+@import './page/blog/index.scss';
+///footer
+@import './component/footer/index.scss';

@@ -1,0 +1,24 @@
+.spiner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  z-index: 10000;
+  &__castome {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__text {
+    margin-top: 15px;
+    font-family: 'Futura New';
+    font-size: 30px;
+    font-weight: $text-link-width;
+    line-height: $text-link-lineHeight;
+    color: #59443f;
+  }
+}
