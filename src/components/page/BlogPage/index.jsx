@@ -1,10 +1,11 @@
+/* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable no-empty-function */
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/order */
 import React, { useState, useEffect, useCallback } from 'react';
-import { blogLinks } from '../../../helpers/pages/blog';
+import { blogLinks, textModificate } from '../../../helpers/pages/blog';
 import Pagination from '@mui/material/Pagination';
 import LayoutPage from '../../common/layout';
 import CustomeSpiner from '../../common/spiner';
@@ -12,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { addShowAddBlog } from '../../../store/slice/showAddBlogSlice';
 import date from 'date-and-time';
 import { getImgByUrl } from '../../../server/function/getImg';
+import SpinerV2 from '../../common/spinerV2';
 
 const BlogPage = ({ data = [] }) => {
   const dispath = useDispatch();
@@ -65,10 +67,17 @@ const BlogPage = ({ data = [] }) => {
   };
 
   const getUrlImg = (name) => {
-    const photo = listPhoto.find((item) => {
-      return item.name === name;
-    });
-    return photo.url;
+    try {
+      const photo = listPhoto.find((item) => {
+        return item.name === name;
+      });
+      if (photo) {
+        return photo.url;
+      }
+      return false;
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -109,11 +118,14 @@ const BlogPage = ({ data = [] }) => {
                 {currentBlog.map((el) => (
                   <div className='blog__item' key={el.id}>
                     <div className='blog__card-item-img'>
-                      <img src={getUrlImg(el.photoUrl)} alt='' />
-                      <div className='blog__card-logo'>{el.textPicture}</div>
+                      {getUrlImg(el.photoUrl) ? (
+                        <img src={getUrlImg(el.photoUrl)} alt='' />
+                      ) : (
+                        'Загрузка'
+                      )}
                       <div className='blog__card-img-text'>
                         <div className='blog__card-teg'>{el.teg}</div>
-                        <div className='blog__img-title'>{el.title}</div>
+                        <div className='blog__img-title'>{el.textPicture}</div>
                       </div>
                     </div>
                     <div className='blog__card-info'>
@@ -121,7 +133,9 @@ const BlogPage = ({ data = [] }) => {
                       <h3 className='blog__card-data'>
                         {getDate(el.dateCreate)}
                       </h3>
-                      <p className='blog__card-text'>{el.text}</p>
+                      <p className='blog__card-text'>
+                        {textModificate(el.text)}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -149,7 +163,9 @@ const BlogPage = ({ data = [] }) => {
               </div>
             </div>
           ) : (
-            <>Нет</>
+            <>
+              <SpinerV2 />
+            </>
           )}
         </LayoutPage>
       </div>

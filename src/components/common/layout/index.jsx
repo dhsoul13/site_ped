@@ -30,12 +30,17 @@ const LayoutPage = ({
             </li>
           ))}
         </ul>
-        <BootstrapButton
-          className={`${className}__button-admin  layout-1__button-admin`}
-          onClick={onClickButton}
-        >
-          {textButton}
-        </BootstrapButton>
+        <div className={`${className}__admin-panel`}>
+          <h2>Админ панель</h2>
+          <div className={`${className}__delete`}>Удалить запись</div>
+          <div className={`${className}__fix`}>Редактировать</div>
+          <BootstrapButton
+            className={`${className}__button-admin  layout-1__button-admin`}
+            onClick={onClickButton}
+          >
+            {textButton}
+          </BootstrapButton>
+        </div>
       </div>
       <div className={`${className}__rignt  layout-1__rignt`}>
         <NavLink to='/' className={`${className}__link  layout-1__link`}>
