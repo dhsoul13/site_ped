@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable no-empty-function */
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/order */
@@ -6,10 +8,10 @@ import { blogLinks } from '../../../helpers/pages/blog';
 import Pagination from '@mui/material/Pagination';
 import LayoutPage from '../../common/layout';
 import CustomeSpiner from '../../common/spiner';
-import { createTheme } from '@mui/material';
-import { theme } from '../../../helpers/theme';
 import { useDispatch } from 'react-redux';
 import { addShowAddBlog } from '../../../store/slice/showAddBlogSlice';
+import date from 'date-and-time';
+import { getImgByUrl } from '../../../server/function/getImg';
 
 const BlogPage = ({ data = [] }) => {
   const dispath = useDispatch();
@@ -17,6 +19,7 @@ const BlogPage = ({ data = [] }) => {
   const [total, setTotal] = useState(0);
   const [current, setCurrent] = useState(1);
   const [blogPerPage, setBlogPerPage] = useState(5);
+  const [listPhoto, setListPhoto] = useState([]);
 
   useEffect(() => {
     if (data.length) {
@@ -29,6 +32,18 @@ const BlogPage = ({ data = [] }) => {
       setCurrent(0);
     }
   }, [data]);
+
+  const getUrlFunction = async () => {
+    const url = await getImgByUrl({
+      src: `blog/`,
+      state: listPhoto,
+      setState: setListPhoto,
+    });
+  };
+
+  useEffect(() => {
+    const data = getUrlFunction();
+  }, []);
 
   /// отрезать эдементы
   const indexLastBlog = current * blogPerPage;
@@ -43,6 +58,19 @@ const BlogPage = ({ data = [] }) => {
     dispath(addShowAddBlog());
   }, []);
 
+  const getDate = (el) => {
+    const time = new Date(el);
+    const renderDate = date.format(time, 'YYYY/MM/DD HH:mm:ss');
+    return renderDate;
+  };
+
+  const getUrlImg = (name) => {
+    const photo = listPhoto.find((item) => {
+      return item.name === name;
+    });
+    return photo.url;
+  };
+
   return (
     <div className='blog'>
       <div className='blog__container container'>
@@ -52,7 +80,7 @@ const BlogPage = ({ data = [] }) => {
           textButton='Добавить блог'
           onClickButton={handlerClick}
         >
-          {data.length ? (
+          {data.length && listPhoto.length ? (
             <div className='blog__wrapper'>
               <div className='blog__pagination'>
                 <Pagination
@@ -81,22 +109,19 @@ const BlogPage = ({ data = [] }) => {
                 {currentBlog.map((el) => (
                   <div className='blog__item' key={el.id}>
                     <div className='blog__card-item-img'>
-                      <img src={el.url} alt='' />
-                      <div className='blog__card-logo'>logo</div>
+                      <img src={getUrlImg(el.photoUrl)} alt='' />
+                      <div className='blog__card-logo'>{el.textPicture}</div>
                       <div className='blog__card-img-text'>
-                        <div className='blog__card-teg'>тег</div>
-                        <div className='blog__img-title'>title</div>
+                        <div className='blog__card-teg'>{el.teg}</div>
+                        <div className='blog__img-title'>{el.title}</div>
                       </div>
                     </div>
                     <div className='blog__card-info'>
                       <h2 className='blog__card-title'>{el.title}</h2>
-                      <h3 className='blog__card-data'>дата</h3>
-                      <p className='blog__card-text'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quia eligendi eius a quisquam inventore architecto,
-                        neque dolorum earum at asperiores voluptate doloribus
-                        nulla animi in similique quae, saepe blanditiis quo!
-                      </p>
+                      <h3 className='blog__card-data'>
+                        {getDate(el.dateCreate)}
+                      </h3>
+                      <p className='blog__card-text'>{el.text}</p>
                     </div>
                   </div>
                 ))}
@@ -124,7 +149,7 @@ const BlogPage = ({ data = [] }) => {
               </div>
             </div>
           ) : (
-            <CustomeSpiner />
+            <>Нет</>
           )}
         </LayoutPage>
       </div>

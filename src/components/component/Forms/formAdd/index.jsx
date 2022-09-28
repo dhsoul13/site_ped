@@ -24,8 +24,9 @@ import showSpiner, {
   addShowAlert,
   removeShowAlert,
 } from '../../../../store/slice/showSpiner';
+import { addFromBd } from '../../../../server/function/add';
 
-const FormAdd = ({ className, showAlert }) => {
+const FormAdd = ({ className, showAlert, exitPopUp }) => {
   const dispatch = useDispatch();
   const initialValues = {
     text: '',
@@ -48,7 +49,6 @@ const FormAdd = ({ className, showAlert }) => {
   };
 
   const handleClickUploadFile = async (formik) => {
-    console.log(imageUpload);
     if (imageUpload == null) {
       showAlert();
       return null;
@@ -65,12 +65,18 @@ const FormAdd = ({ className, showAlert }) => {
     initialValues,
     validationSchema: validateAddForm,
     onSubmit: (values) => {
-      const one = async () => {
+      const one = async (value) => {
         const a = await handleClickUploadFile(formik);
-        alert(a);
+
+        await addFromBd({
+          src: 'blog',
+          showSpiner: showSpinerCustome,
+          value: { ...value, photoUrl: a.split('/')[1] },
+          exitPopUp,
+        });
       };
 
-      one();
+      one(values);
     },
   });
 

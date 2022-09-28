@@ -46,7 +46,11 @@ const AddPopUp = ({ className, title }) => {
           </div>
           <h2 className={`${className}__title`}>{title}</h2>
           <ul className={`${className}__list`}>
-            <FormAdd className={className} showAlert={changeClickAlert} />
+            <FormAdd
+              className={className}
+              showAlert={changeClickAlert}
+              exitPopUp={handlerClickClose}
+            />
           </ul>
         </div>
       </div>
